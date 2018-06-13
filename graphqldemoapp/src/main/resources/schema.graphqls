@@ -1,0 +1,44 @@
+type Query{
+    allUsers: [User]
+    user(id : String) : User
+}
+
+type Mutation {
+    createUser(name:String!, authProvider: AuthData!, addressList: [AddressInput]): User
+}
+
+type User {
+    id : ID!
+    name : String
+    email : String
+    addressList : [Address]
+}
+
+type Address {
+    line1 : String
+    line2 : String
+    pinCode : String
+    addressType : AddressType
+}
+
+enum AddressType {
+    BILLING
+    HOME
+}
+
+input AuthData {
+      email: String!
+      password: String!
+}
+
+input AddressInput{
+     line1 : String
+        line2 : String
+        pinCode : String
+        addressType : AddressType
+}
+schema {
+    query: Query
+    mutation : Mutation
+}
+
